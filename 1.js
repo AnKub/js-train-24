@@ -25,3 +25,28 @@ function task1() {
 
 // Викликаємо функцію task1
 task1();
+
+
+
+// ++++++++++++++++++++++++
+
+
+const loadFile =(filename)=> 
+new Promise((resolve, reject) => {
+console.log(`Load file ${filename}...`);
+// reject('Error');
+setTimeout(() => resolve(null, `In file ${filename}`), 2000);
+});
+
+loadFile('img.png').then((data) => {
+return data.toUpperCase();
+}) 
+.then((data) => {
+  console.log(data);  
+})
+.catch((error) => {
+  console.log('errror', error);
+})
+.finally(() =>{
+  console.log("End");  
+})
