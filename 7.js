@@ -12,7 +12,28 @@ function task7() {
   // Використовуємо then для обробки зарезолвленого проміса, та виводимо в консоль `Проміс зарезолвився з значенням: ${value}` .
   // Якщо проміс відхилено, обробляємо помилку за допомогою catch, та виводимо в консоль `Проміс відхилився з помилкою: ${error}`.
   // Використовуємо finally для виконання дій після завершення проміса, незалежно від його статусу, та виводимо в консоль "Проміс завершено".
+  function promise() {
+    return new Promise((resolve, reject) => {
+      const interval = setInterval(() => {
+        const currentDate = new Date();
+        const sec = currentDate.getSeconds();
+        console.log(`Поточні секунди: ${sec}`);
+        if (sec % 10 === 0) {
+          clearInterval(interval);
+          resolve("Поточні секунди кратні 10!");
+        } else if (sec % 3 === 0) {
+          clearInterval(interval);
+          reject("Поточні секунди кратні 3!");
+        }
+      }, 1000);
+    });
+  }
+  promise()
+    .then((value) => console.log(`Проміс зарезолвився з значенням: ${value}`))
+    .catch((error) => console.log(`Проміс відхилився з помилкою: ${error}`))
+    .finally(() => console.log("Проміс завершено"));
 }
+
 
 // Викликаємо функцію task7
 task7();
